@@ -11,7 +11,7 @@ localVideo.muted = true;
 const peers = {};
 
 let myPeer = new Peer(undefined, {
-  //path: "/peerjs",
+  path: "/peerjs",
   host: "/",
   port: "443",
 });
