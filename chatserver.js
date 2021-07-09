@@ -6,6 +6,9 @@ const server = require("http").Server(app);
 /* import socket.io */
 const io = require("socket.io")(server);
 // const { v4: uuidv4 } = require("uuid"); // uncomment later
+
+const { ExpressPeerServer } = require("peer");
+
 const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
