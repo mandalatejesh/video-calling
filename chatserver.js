@@ -5,8 +5,12 @@ const server = require("http").Server(app);
 
 /* import socket.io */
 const io = require("socket.io")(server);
-const { v4: uuidv4 } = require("uuid"); // uncomment later
+// const { v4: uuidv4 } = require("uuid"); // uncomment later
+const peerServer = ExpressPeerServer(server, {
+  debug: true,
+});
 
+app.use("/peerjs", peerServer);
 /* view engine for the app */
 app.set("view engine", "ejs");
 
