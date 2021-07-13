@@ -1,7 +1,7 @@
 /* javascript for the frontend */
 
-// const { Socket } = require("socket.io");
-const socket = io("/");
+const { socket } = require("socket.io");
+//const socket = io("/");
 
 const videoGrid = document.getElementById("video-grid");
 
