@@ -12,9 +12,9 @@ let localStream;
 const peers = {};
 
 let myPeer = new Peer(undefined, {
-  host: "/" /* 
-  host: "/", */,
-  port: "3001",
+  path: "/peerjs",
+  host: "/",
+  port: "443",
 });
 
 myPeer.on("open", (id) => {
