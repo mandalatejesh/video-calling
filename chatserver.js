@@ -4,16 +4,14 @@ const app = express();
 const server = require("http").Server(app);
 
 /* import socket.io */
-const io = require("socket.io")(server);
 // const { v4: uuidv4 } = require("uuid"); // uncomment later
-
+const io = require("socket.io")(server); /* 
 const { ExpressPeerServer } = require("peer");
-
 const peerServer = ExpressPeerServer(server, {
   debug: true,
-});
+}); */
 
-app.use("/peerjs", peerServer);
+//app.use("/peerjs", peerServer);
 /* view engine for the app */
 app.set("view engine", "ejs");
 
@@ -48,4 +46,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(process.env.PORT || 3030);
+server.listen(process.env.PORT || 3000);

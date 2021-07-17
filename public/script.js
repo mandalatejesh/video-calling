@@ -1,7 +1,7 @@
 /* javascript for the frontend */
 
-const { socket } = require("socket.io");
-//const socket = io("/");
+//const { socket } = require("socket.io");
+const socket = io("/");
 
 const videoGrid = document.getElementById("video-grid");
 
@@ -11,9 +11,9 @@ localVideo.muted = true;
 const peers = {};
 
 let myPeer = new Peer(undefined, {
-  path: "/peerjs",
-  host: "/",
-  port: "443",
+  host: "/" /* 
+  host: "/", */,
+  port: "3001",
 });
 
 myPeer.on("open", (id) => {
@@ -41,13 +41,12 @@ navigator.mediaDevices
     });
   });
 
-socket.on("user-disconnected", (userId) => {
-  if (peers[userId]) peers[userId].close();
-});
-
 socket.on("recieve-message", (msg, userId, username) => {
   document.getElementById("chat-dialogue").innerHTML +=
     "<li><strong>" + username + ":</strong>\n" + msg;
+});
+socket.on("user-disconnected", (userId) => {
+  if (peers[userId]) peers[userId].close();
 });
 
 function connectNewUser(userId, stream) {
