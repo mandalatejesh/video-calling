@@ -7,6 +7,7 @@ const videoGrid = document.getElementById("video-grid");
 
 const localVideo = document.createElement("video");
 localVideo.muted = true;
+let localStream;
 
 const peers = {};
 
@@ -27,13 +28,14 @@ navigator.mediaDevices
     audio: true,
   })
   .then((stream) => {
-    addVideoStream(localVideo, stream);
+    localStream = stream;
+    addVideoStream(localVideo, stream, 0);
 
     myPeer.on("call", (call) => {
       call.answer(stream);
       const video = document.createElement("video");
       call.on("stream", (userVideoStream) => {
-        addVideoStream(video, userVideoStream);
+        addVideoStream(video, userVideoStream, 1);
       });
     });
     socket.on("user-connected", (userId) => {
@@ -53,7 +55,7 @@ function connectNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
   call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
+    addVideoStream(video, userVideoStream, 1);
   });
   call.on("close", () => {
     video.remove();
@@ -61,13 +63,18 @@ function connectNewUser(userId, stream) {
   peers[userId] = call;
 }
 
-const addVideoStream = (video, stream) => {
+const addVideoStream = (video, stream, who) => {
   /* play the stream */
   video.srcObject = stream;
   video.addEventListener("loadedmetadata", () => {
     video.play();
   });
-  videoGrid.append(video);
+  //videoGrid.append(video);
+  if (who == 0) {
+    document.getElementById("local").append(video);
+  } else {
+    document.getElementById("remote").append(video);
+  }
 };
 
 function sendData() {
@@ -76,8 +83,10 @@ function sendData() {
   socket.emit("send-message", msg);
 
   document.getElementById("chat-dialogue").innerHTML +=
-    "<li><strong>" + USER_NAME + ":</strong>\n" + msg;
+    "<li><strong>" + USER_NAME + ":</strong><br/>" + msg;
   document.getElementById("send-text").value = "";
+  let element = document.getElementById("chat-dialogue");
+  element.scrollIntoView(false);
 }
 document.getElementById("send-text").addEventListener("keyup", (e) => {
   if (e.key == "Enter") {

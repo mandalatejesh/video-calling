@@ -15,9 +15,16 @@
     </script>
   </head>
   <body>
-    <div id="video-grid"></div>
-    <ul id="chat-dialogue"></ul>
+    <div id="video-grid">
+      <div id="local"></div>
+      <div id="remote"></div>
+    </div>
+    <div class="chatbox">
+      <ul id="chat-dialogue"></ul>
+    </div>
+
     <input type="text" id="send-text" value="" />
-    <input type="button" value="send" id="send-btn" onclick="sendData()" />
+    <input type="button" value=">>" id="send-btn" onclick="sendData()" />
+    <div id="control-center"></div>
   </body>
 </html>

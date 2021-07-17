@@ -1,9 +1,81 @@
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: #2f323a;
+}
 #video-grid {
-  display: flex;
+  display: inline;
   justify-content: center;
 }
 video {
   height: 300px;
   width: 400px;
   object-fit: cover;
+  border-radius: 10px;
+}
+.chatbox {
+  background-color: #a5aab6;
+  width: 20vw;
+  height: 90vh;
+  position: absolute;
+  right: 0;
+  top: 5px;
+  overflow: auto;
+  color: black;
+  border-radius: 10px;
+}
+#send-text {
+  width: 17.4vw;
+  height: 3vh;
+  position: absolute;
+  bottom: 5.3vh;
+  right: 2.2vw;
+  margin-right: 0;
+  border-right: 0;
+}
+#chat-dialogue {
+  list-style-type: none;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+#send-btn {
+  position: absolute;
+  right: 0;
+  bottom: 5.25vh;
+  height: 3.8vh;
+  width: 2.2vw;
+  padding: 0;
+  margin-left: 0;
+  border-left: 0;
+  background-color: white;
+}
+#control-center {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 5vh;
+  background-color: #a5aab6;
+  margin-left: 1px;
+  padding-left: 0;
+  border-radius: 10px;
+}
+#local {
+  background-color: red;
+  height: 300px;
+  width: 400px;
+  display: inline-block;
+  position: absolute;
+  left: 150px;
+  top: 10vh;
+  border-radius: 10px;
+}
+#remote {
+  background-color: blue;
+  height: 300px;
+  width: 400px;
+  display: inline-block;
+  position: absolute;
+  left: 600px;
+  top: 10vh;
+  border-radius: 10px;
 }

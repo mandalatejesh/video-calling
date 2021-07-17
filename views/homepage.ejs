@@ -5,20 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="homeStyle.css" />
     <script defer src="scriptHomePage.js"></script>
   </head>
   <body>
-    <h1>This is the homepage</h1>
-    <p>Room Id:</p>
-    <input type="text" id="roomId" /><input
-      type="button"
-      value="Create new room"
-      id="create-new-room"
-    />
-    <br />
-    <p>Name:</p>
-    <input type="text" id="user-name" />
-    <input type="button" value="join" id="btn" onclick="joinRoom()" />
+    <div class="container">
+      <label for="roomId"><b>Meeting Id</b></label
+      ><br />
+      <input type="text" placeholder="Enter meeting Id" id="roomId" required />
+      <br />
+      <label for="user-name"><b>Username</b></label
+      ><br />
+      <input type="text" placeholder="Enter name" id="user-name" />
+      <br />
+      <input type="button" value="Create new room" id="create-new-room" />
+      <input type="button" value="join" id="btn" onclick="joinRoom()" />
+    </div>
   </body>
 </html>
