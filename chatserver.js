@@ -4,27 +4,26 @@ const app = express();
 const server = require("http").Server(app);
 
 /* import socket.io */
-// const { v4: uuidv4 } = require("uuid"); // uncomment later
-const io = require("socket.io")(server); /* 
+const io = require("socket.io")(server); 
+/* setup peer server*/
 const { ExpressPeerServer } = require("peer");
 const peerServer = ExpressPeerServer(server, {
   debug: true,
-}); */
+}); 
 
-//app.use("/peerjs", peerServer);
+app.use("/peerjs", peerServer);
 /* view engine for the app */
 app.set("view engine", "ejs");
 
 /* script is gonna be in public folder uri */
 app.use(express.static("public")); // all the static files in public directory
 
-/* on get request, redirect to a room 1024, check uuid for unique room generation */
+/*on get request, render homepage*/
 app.get("/", (req, res) => {
-  // res.redirect(`/${uuidv4()}?69`);
   res.render("homepage");
 });
 
-/* roomie is the parameter for the redirected request */
+/* chatroom is the parameter for the redirected request */
 app.get("/:chatRoom", (req, res) => {
   res.render("chatRoom", {
     roomId: req.params.chatRoom,
